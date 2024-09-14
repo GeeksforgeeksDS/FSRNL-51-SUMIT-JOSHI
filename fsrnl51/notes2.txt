@@ -1,0 +1,271 @@
+-> React Js :- It is an open-source , cross-platform JavaScript library which is used  to develop User Interface (UI) (Front-End)
+  -> It is known as View Layer of the application (presentation layer)
+  -> It is maintained by facebook 
+    -> React Js : web application 
+    -> React Native : mobile application 
+  -> With the help of react we can develop SPA (Single Page Applications)
+
+  -> Features of React Js 
+     -> Component Based Architecture :React is all about component. It is used for reusability.With the help of it we can divide our application into a small piecies of code.
+
+     -> Support JSX (JavaScript Syntax Extension) : with the help of JSx we can write html code within JavaScript. The code is more clear and readble (easy to understand).
+        ** but browser doesnt understand JSX , so in react we have a Babel transpilar with transpile or compile JSX code into JS.
+    -> ** Virtual DOM : It is a simple copy of DOM. It is a virtual representaion of Real DOM.
+        When new element are added to the UI,it creates a new Virtual DOM tree.Then it compares to the previous copy.After it only the new part is updated in the Real DOM. Thats why the reason the performance is fast.
+
+
+    -> Environmental Setup (Installation)
+       -> Node Js environment 
+          -> Download and install node Js 
+          https://nodejs.org/en/download/package-manager 
+          -> check node is install or node 
+            -> cmd /terminal 
+              node -v 
+      -> How we create react application 
+          npx create-react-app appname 
+      -> How we run a react application 
+        -> open app folder in cmd/terminal 
+           npm start (3000 port in your default browser)
+     
+     -> Folder and directory structure 
+       -> node_modules : in that folder all node related modules are store. They used in react to create application 
+       -> public : global folder where we store assets (css/images/js)
+          -> index.html : main html file which execute when react app is serve.
+       -> src : it is a main folder , all components , services we can create here 
+          ->  index.js : main JavaScript entry point file 
+          ->   App.js : default component 
+          ->   App.test.js : testing file of App component 
+       -> .gitignore 
+       -> package.json : all node_modules dependencies are define 
+       -> package-lock.json : dependencies with their version are define 
+       -> README.md : all the project details we mention in the file 
+
+-> How react application is boot or execute 
+    index.html 
+<div id="root"></div>
+     ---> boot --> src/index.js --> get the id root from index.html and load the APP component (default component) in the div id root.
+-> Session 8 
+   -> components : are the core building block of react application.They are used for reusability. With the help of it we can divide our UI into multiple pieces of code.
+      -> types of components 
+         -> Class Component 
+         -> Function Component 
+         *** when we create a component the component name is start from capital letter 
+       -> Class Component :
+            syntax :
+               import {Component} from 'react';
+               class ComponentName extends Component
+               {
+                  //js logic part 
+                    render(){
+                       return(
+                          <div>
+                            // ui/html
+                          </div>
+                       )
+                    }
+               }
+               eg:
+               Home.jsx 
+               import {Component} from 'react';
+               class Home extends Component 
+               {
+                   render(){
+                     return(
+                        <div>
+                           <h2> Home Class Component </h2>
+                        </div>
+                     )
+                   }
+               }
+               export default Home;
+            -> How we use component in another component 
+            App.js 
+            import Home from './path';
+            <Home />
+      -> Fragment 
+       <> </>
+
+       -> Function Component 
+           syntax :
+              function ComponentName(){
+                 return(
+                   <>
+                     //html 
+                   </>
+                 )
+              }
+              or 
+              const ComponentName=function(){
+                  return(
+                   <>
+                     //html 
+                   </>
+                 )
+              }
+            or 
+            const ComponentName=()=>{
+                 return(
+                   <>
+                     //html 
+                   </>
+                 )
+            }
+      eg: 
+      Home.jsx 
+      const Home=()=>{
+    return(
+        <>
+          <h2> Home Page</h2>
+        </>
+    )
+}
+export default Home;
+->How we use in App.js 
+  import Home from './components/Home';
+const App=()=>{
+   return(
+     <>
+        <h1> Welcome to React Js</h1>
+        <hr/>
+        <Home />
+     </>
+   )
+}
+export default App;
+
+   -> How we render dynamic data 
+      -> expression   {} 
+      eg:
+      const title="My Home Page";
+      <h2> {title} </h2>
+   -> How we render array or object 
+      map() array method 
+       eg:
+       let courses=["A","B","C","D"];
+       <ul>
+           {courses.map((val,ind)=> 
+              <li key={ind}> {val} </li>
+           )}
+       </ul>
+       *** if we use map we must pass a unique key prop in the parent element 
+   -> Conditional Rendering 
+        -> ternary operator 
+           {condition ? true : false}
+           eg:
+            {
+               courses.length>0 ? <> Render coures </> : <p> No Course Found </p>
+            }
+        -> Only rendre true part 
+           {
+              courses.length > 0 && <> Render Courses </>
+           }
+   -> Props (property): props are used to pass data from parent component to child component.
+      props are read only it means we cant change the props value in the child component.
+        -> props are passed as an attribute in a component.
+        eg:
+           App.js 
+             const obj={name:"sumit",age:36};
+              <About myobj={obj}/>
+       -> How we can access the props in child component
+          ->1st way 
+            const About=(props)=>{
+                // props.myobj.name
+            }
+         ->2nd way (prefer)
+           const About=({myobj})=>{
+              // myobj.name
+           }
+
+      -> State : are used to manage data within a component. We can change the state data as per our requirement. When there is any update in a state it automatically re-render in a dom without referesh the whole page.
+         ** Before 16.8 version we cant used state in a function component , thats why the reasion that time we use only class component. But in React 16.8 , it introduced hooks and other react features so from their we can use function component over class component.
+           -> useState() : this hook is used to manage state in a function component.
+              syntax :
+                import {useState} from 'react';
+                //define 
+                const [statename,handlermethod]=useState(initialValue);
+                 eg:
+                   statename : name of the state 
+                   handlermethod : method to update state data 
+                  eg:
+                  const [count,setCount]=useState(0);
+                 -> How we read 
+                   {count}
+                 -> update 
+                    setCount(e=> e+1) 
+                     or 
+                    setCount(count+1)
+            -> EventHandling in react js : we use camelcase 
+               onClick , onMouseover etc 
+               eg:
+               <button onClick={method}> click </button>
+                <button onClick={()=> method(par)}> click </button>
+   -> ** React Hooks : Hooks are introduced in React 16.8 version. They are used only in function component.
+     -> Hooks are features that allow us to use some functionality in our application(resuability).
+     -> With the help of hooks we can use state and other features in a function component.
+       -> Benefits of React Hooks 
+          -> Readable
+          -> Lesser code 
+          -> Performance fast 
+          -> writing complex components became easier 
+      -> Hooks start with useprefix 
+         -> Inbuild Hooks 
+         -> userdefine hooks (custom hook)
+           -> Inbuild Hooks 
+               -> useState : manage state within component 
+               -> useEffect : used for sideeffects 
+               -> useRef : reference to a element , and give us mutable object 
+               -> useMemo  : memorize value 
+               -> useCallback : memorize function 
+               -> useContext : context API (state management)
+               -> useReducer : when we have complex state logics 
+         -> useState() :- manage state in a component.
+            syntax :
+            const [count,setCount]=useState(0);
+               -> count : name of the state 
+               -> setCount : method to update state value
+
+         -> useEffect() : used for the sideeffects like to call apis , eventhandling etc.
+            -> It can be executed in 3 different ways (component life cycle)
+               -> Mounting : When a component is loaded 
+                    useEffect(()=>{
+                       //code 
+                    },[])
+               -> Updating : When their is any update in state or props 
+                    useEffect(()=>{
+                       //code 
+                    },[state|prop])
+               -> Unmounting : When component is destroyed (cleanup unwanted data)
+                    useEffect(()=>{
+                       //code 
+                       return ()=>{
+                           // unmounting
+                       }
+                    },[])
+      -> How we call APIs in react (HTTP Call | Network Call)
+         -> fetch() method : inbuild method of JavaScript which return promise 
+             const API="path";
+             fetch(API)
+             .then(res=> res.json())
+             .then(data=> console.log(data))
+             .catch(err=> console.log(err))
+         -> ** axios : it is a 3rd party module and also it return promise 
+             npm i axios --save 
+             import axios from 'axios';
+             const API="path";
+             axios.get(API)
+             .then(res=> console.log(res.data))
+             .catch(err=> console.log(err))
+         https://jsonplaceholder.typicode.com/posts
+
+      -> Pure Components : where we manage with the help of state  
+      -> Unpure Components 
+     -> useRef() : It return a mutable ref object. with the help of it we can directly access the element instead of using the state. Sometime we need to directly access the element then we use a useRef.
+        -> this object have a current property 
+        -> It do not cause re-renders whenever a value is changed.
+
+   -> useState , useEffect , useRef 
+     -> Task 
+         useMemo 
+         useCallback 
+         -> custom hook 
+     -> Routing 

@@ -1,0 +1,91 @@
+-> Crud Application in React js 
+  -> For API we want a JSON Server 
+    -> JSON Server :  It is a node_modules which provide us Rest APIs in very sort period of time in behalf of json file.(GET , POST , PUT , DELETE) for testing purpose.
+      -> npm i json-server --g (global)
+          -> server 
+             -> products.json 
+                {
+                    "products":[
+                        {"id":1,"name":"A","price":1234,"quanitity":5},
+                        {"id":2,"name":"B","price":2234,"quanitity":6},
+                        {"id":3,"name":"C","price":3234,"quanitity":7},
+                        {"id":4,"name":"D","price":4234,"quanitity":8},
+                        {"id":5,"name":"E","price":5234,"quanitity":9}
+                    ]
+                }
+          -> How we run json server 
+             -> open folder in cmd/terminal 
+               json-server --watch products.json --port 3001 
+
+               http://localhost:3001/products 
+
+    -> Assignment 
+       -> Convert this crud part with the help of formik and yup library (formhandling and validation)
+         https://formik.org/docs/overview 
+         https://formik.org/docs/api/useFormik 
+         https://formik.org/docs/tutorial#schema-validation-with-yup 
+
+    -> Local Data Storage 
+       -> cookies : small amount upto 4kb 
+       -> html 5 introduced 
+          -> localStorage: permanent and store upto 5mb of data.
+             -> How we set data 
+                localStorage.setItem(key,value)
+             -> How we get data 
+                localStorage.getItem(key)
+             -> How we remove data 
+                localStorage.removeItem(key)
+          -> sessionStorage: temporary and store upto 5mb of data.
+               -> How we set data 
+                sessionStorage.setItem(key,value)
+               -> How we get data 
+                sessionStorage.getItem(key)
+              -> How we remove data 
+                sessionStorage.removeItem(key)
+
+    -> Layout of project 
+       -> create a react project with the name of front 
+          npx create-react-app front 
+             -> use bootstrap and routing ,axios 
+             -> components 
+                 SignIn 
+                 SignUp 
+                 NavBar 
+                 Dashboard 
+                 Notfound (404)
+                 Products 
+                 AddProduct 
+                 EditProduct 
+                 Cart 
+
+        NavBar 
+
+        GeekAPP       Home  SignIn SignUp Products Add Product Logout 
+
+        App.jsx 
+          NavBar 
+          <section>
+            //routing 
+          </section>
+    -> When app is load 
+        NavBar 
+           SignIn 
+             Email 
+             Password 
+
+             SignUp 
+               First Name 
+               Last name 
+               Email 
+               Password 
+               Age 
+               Mobile 
+
+               Add product 
+               Pname 
+               Category 
+               Price 
+               Quantity 
+               Features 
+               Upload 
+
